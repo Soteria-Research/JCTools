@@ -32,6 +32,10 @@ public final class UnsafeRefArrayAccess
         {
             REF_ELEMENT_SHIFT = 3;
         }
+        else if (16 == scale)
+        {
+            REF_ELEMENT_SHIFT = 4; 
+        }
         else
         {
             throw new IllegalStateException("Unknown pointer size: " + scale);
