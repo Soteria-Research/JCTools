@@ -7,6 +7,7 @@
     <packaging>pom</packaging>
     <version>4.0.2-SNAPSHOT</version>
     <name>JCTools Parent</name>
+    <url>https://github.com/${repository-owner}/${repository-name}/${branch-name}</url>
     <organization>
         <url>https://github.com/JCTools</url>
     </organization>
@@ -48,8 +49,12 @@
     </prerequisites>
 
     <properties>
+        <repository-owner>soteria-research</repository-owner>
+        <repository-name>jctools</repository-name>
+        <branch-name>cheri-master</branch-name>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.6</java.version>
+        <java.version>1.8</java.version>
         <java.test.version>1.8</java.test.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -62,6 +67,17 @@
         <guava-testlib.version>31.1-jre</guava-testlib.version>
         <lincheck.version>2.14.1</lincheck.version>
     </properties>
+
+
+
+    <distributionManagement>
+        <repository>
+            <id>github-jctools</id>
+            <name>github</name>
+            <url>https://maven.pkg.github.com/${repository-owner}/${repository-name}</url>
+        </repository>
+    </distributionManagement>
+
 
     <modules>
         <module>jctools-core</module>
@@ -190,6 +206,7 @@
             </plugin>
         </plugins>
     </build>
+
     <profiles>
         <profile>
             <id>surefire-java8</id>
@@ -241,5 +258,18 @@
                 <java.version>${java.test.version}</java.version>
             </properties>
         </profile>
+        <profile>
+            <id>github-jctools</id>
+            <repositories>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/${repository-owner}/${repository-name}</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
     </profiles>
+
 </project>
